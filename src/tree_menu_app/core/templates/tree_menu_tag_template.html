@@ -1,0 +1,30 @@
+<!-- {% load tree_menu_tag %} -->
+{% if not is_included %}
+{% load static %}
+{{ menu_name }}
+{% endif %}
+<ul>
+    {% for item in menu.sub %}
+        {% if item.item.name in menu_components %}
+            {% if item.item.url == request.path %}
+                {{ item.item.name }}<br>
+            {% else %}
+                {% if item.sub %}
+                    <li ><a href='{{ item.item.url }}'>{{ item.item.name }}</a></li>
+                {% else %}
+                    <a href='{{ item.item.url }}'>{{ item.item.name }}</a><br>
+                {% endif %}
+            {% endif %}
+                {% if item.sub %}
+                    {% include 'tree_menu_tag_template.html' with menu=item is_included=True%}
+                {% endif %}
+            
+        {% else %}
+            {% if item.sub %}
+                <li ><a href='{{ item.item.url }}'>{{ item.item.name }}</a></li>
+            {% else %}
+                <a href='{{ item.item.url }}'>{{ item.item.name }}</a><br>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+</ul> 

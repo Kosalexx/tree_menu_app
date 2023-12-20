@@ -1,0 +1,21 @@
+
+<!doctype html>
+{% load static %}
+<html lang="en">
+    <head>
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+
+        <title>Some app</title>
+    </head>
+    <body>
+    <div class="wrapper">
+
+        {% block menu_list %}
+        {% endblock %}
+
+        {% block menu_drawing %}
+        {% endblock %}
+    </div>
+    
+    </body>
+</html>
