@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load tree_menu_tag %}
+{% block menu_drawing %}
+    <nav>
+        <div class="menu">
+        <h4><a href="{% url 'menus-in-db' %}">Back to menu selection</a></h4>
+        <!-- For correct operation you should specify the menu name in the format " draw_menu menu_name='Menu_1' " 
+        where 'Menu_1' is the existing name of the menu in the database. -->
+        {% draw_menu menu_name='Menu_1' %}
+        {% draw_menu menu_name='Menu_2' %}
+        <br>
+        <!-- The next menu will change if we select an item (and consequently click a link in it) 
+        from another present menu, since the tree_menu() view stores in the context variable 'current_menu_name'
+        the name of the menu specified at the beginning of the url. -->
+        {% draw_menu menu_name=current_menu_name %}
+        </div>
+    </nav>
+    <div class="block">
+        {% if page_body_info.menu %}
+            <h1>Menu: {{ page_body_info.menu.name }}</h1>
+            <p>Description: {{page_body_info.menu.description}}</p>
+        {% else %}
+            <h1>Menu: {{ page_body_info.submenu.menu.name }}</h1>
+            <h4>Menu Item: {{ page_body_info.submenu.name }}</h4>
+            <p>Description: {{page_body_info.submenu.description}}</p>
+        {% endif %}
+    </div>
+{% endblock %}

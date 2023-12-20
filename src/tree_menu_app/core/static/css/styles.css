@@ -1,0 +1,21 @@
+.wrapper {
+    display: flex;
+    }
+.block {
+    display: inline-block;
+    margin: 2px;
+    }
+.menu {
+    display: inline-block;
+    color:white;
+    min-width:250px;
+    background-color: rgb(255, 133, 133);
+    padding: 7px;
+}
+.menu ul {
+    background-color: brown;
+    display: block;
+    width: auto;
+    height: auto;
+    padding-right: 2px;
+}
